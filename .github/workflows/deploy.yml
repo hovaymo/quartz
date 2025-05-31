@@ -3,7 +3,7 @@ name: Build and Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # або заміни на свою головну гілку
+      - v4  # або main — залежно від того, яка в тебе основна гілка
 
 jobs:
   build-and-deploy:
