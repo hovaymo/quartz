@@ -1,4 +1,4 @@
-name: Deploy Quartz (Hugo)
+z`n`ame: Deploy Quartz (Hugo)
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
       - name: Setup Hugo 🎩
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.121.2'  # Переконайся, що ця версія працює (або можна поновити)
+          hugo-version: '0.147.6'  # Переконайся, що ця версія працює (або можна поновити)
 
       - name: Build with Hugo 🏗️
         run: hugo --minify
