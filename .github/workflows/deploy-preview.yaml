@@ -1,30 +1,31 @@
-name: Upload Preview Deployment
+name: Build and Deploy to Cloudflare Pages
+
 on:
-  workflow_run:
-    workflows: ["Build Preview Deployment"]
-    types:
-      - completed
+  push:
+    branches:
+      - main  # або твоя головна гілка
 
 permissions:
-  actions: read
-  deployments: write
   contents: read
-  pull-requests: write
 
 jobs:
-  deploy-preview:
-    if: ${{ github.repository == 'jackyzha0/quartz' && github.event.workflow_run.conclusion == 'success' }}
+  build-and-deploy:
     runs-on: ubuntu-latest
-    name: Deploy Preview to Cloudflare Pages
+
     steps:
-      - name: Download build artifact
-        uses: actions/download-artifact@v4
-        id: preview-build-artifact
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          name: preview-build
-          path: build
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          run-id: ${{ github.event.workflow_run.id }}
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build site
+        run: npm run build
 
       - name: Deploy to Cloudflare Pages
         uses: AdrianGonz97/refined-cf-pages-action@v1
@@ -33,5 +34,5 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           projectName: quartz
-          deploymentName: Branch Preview
-          directory: ${{ steps.preview-build-artifact.outputs.download-path }}
+          deploymentName: Production
+          directory: ./public   # ← ключовий рядок! Деплой саме з public
