@@ -86,6 +86,114 @@ export default (() => {
         <meta name="description" content={description} />
         <meta name="generator" content="Quartz" />
 
+        {/* Форсування темної теми і layout прямо в HTML */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+            html, body {
+              background-color: #161618 !important;
+              color: #ebebec !important;
+              margin: 0 !important;
+              padding: 0 !important;
+            }
+            * {
+              --light: #161618 !important;
+              --lightgray: #393639 !important;
+              --gray: #646464 !important;
+              --darkgray: #d4d4d4 !important;
+              --dark: #ebebec !important;
+              --secondary: #7b97aa !important;
+              --tertiary: #84a59d !important;
+              --highlight: rgba(143, 159, 169, 0.15) !important;
+              --textHighlight: #b3aa0288 !important;
+            }
+            .page {
+              max-width: 900px !important;
+              margin: 0 auto !important;
+              padding: 0 !important;
+              margin-top: 0 !important;
+              padding-top: 0 !important;
+              padding-left: 0 !important;
+              padding-right: 0 !important;
+            }
+            .sidebar.left, .sidebar.right {
+              display: none !important;
+            }
+            .page > #quartz-body {
+              display: block !important;
+              grid-template-columns: 1fr !important;
+              margin-top: 0 !important;
+              padding-top: 0 !important;
+            }
+            .page > #quartz-body > article {
+              margin-top: 0 !important;
+              padding-top: 0 !important;
+              padding-left: 0 !important;
+              padding-right: 0 !important;
+              margin-left: 0 !important;
+              margin-right: 0 !important;
+            }
+            /* Стилі для обкладинки та аватара */
+            .cover-container {
+              position: relative !important;
+              width: 100vw !important;
+              left: 50% !important;
+              right: 50% !important;
+              margin-left: -50vw !important;
+              margin-right: -50vw !important;
+              overflow: hidden !important;
+              padding: 0 !important;
+              z-index: 1 !important;
+              margin-top: -2rem !important;
+              margin-bottom: 0 !important;
+            }
+            .cover-image {
+              width: 100vw !important;
+              max-width: 100vw !important;
+              height: 220px !important;
+              object-fit: cover !important;
+              display: block !important;
+              margin: 0 !important;
+              padding: 0 !important;
+              border-radius: 0 !important;
+            }
+            .avatar-container {
+              position: absolute !important;
+              left: 0 !important;
+              bottom: -60px !important;
+              display: flex !important;
+              align-items: flex-end !important;
+              width: 100% !important;
+              padding-left: 0 !important;
+              height: 180px !important;
+            }
+            .avatar-wrapper {
+              margin-left: 2.5rem !important;
+              padding-left: 0 !important;
+            }
+            @media (max-width: 900px) {
+              .avatar-wrapper {
+                margin-left: 1.2rem !important;
+              }
+            }
+            .avatar-image {
+              width: 120px !important;
+              height: 120px !important;
+              border-radius: 50% !important;
+              border: 4px solid #fff !important;
+              box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
+              background: #fff !important;
+              object-fit: cover !important;
+              display: block !important;
+            }
+            .content-spacer {
+              height: 130px !important;
+              display: block !important;
+            }
+          `,
+          }}
+        />
+
         {css.map((resource) => CSSResourceToStyleElement(resource, true))}
         {js
           .filter((resource) => resource.loadTime === "beforeDOMReady")

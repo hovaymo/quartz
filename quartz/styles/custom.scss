@@ -1,0 +1,141 @@
+@use "./base.scss";
+
+// Форсування темної теми з максимальним пріоритетом
+html, body, * {
+  --light: #161618 !important;
+  --lightgray: #393639 !important;
+  --gray: #646464 !important;
+  --darkgray: #d4d4d4 !important;
+  --dark: #ebebec !important;
+  --secondary: #7b97aa !important;
+  --tertiary: #84a59d !important;
+  --highlight: rgba(143, 159, 169, 0.15) !important;
+  --textHighlight: #b3aa0288 !important;
+}
+
+// Форсування фону і кольору тексту
+html {
+  background-color: #161618 !important;
+  color: #ebebec !important;
+}
+
+body {
+  background-color: #161618 !important;
+  color: #ebebec !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+// Повне видалення Grid Layout і встановлення простого центрованого макету
+.page {
+  display: block !important;
+  max-width: 900px !important;
+  margin: 0 auto !important;
+  padding: 0 2rem !important;
+  background-color: #161618 !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+// Видаляємо всю Grid систему
+.page > #quartz-body {
+  display: block !important;
+  grid-template-areas: none !important;
+  grid-template-columns: none !important;
+  grid-template-rows: none !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+// Спеціальні стилі для хедера головної сторінки
+.page > #quartz-body > article {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+// Стилі для контейнера обкладинки
+.page article div[style*="position:relative"] {
+  margin-left: -2rem !important;
+  margin-right: -2rem !important;
+  margin-top: -2rem !important;
+}
+
+// Стилі для аватара - вирівнювання по лівому краю
+.page article div[style*="position:absolute"] > div {
+  margin-left: 2rem !important;
+  padding-left: 0 !important;
+}
+
+// Приховуємо бокові панелі повністю
+.sidebar.left,
+.sidebar.right,
+.left.sidebar,
+.right.sidebar {
+  display: none !important;
+  width: 0 !important;
+  visibility: hidden !important;
+}
+
+// Центрування основного контенту
+.center {
+  max-width: 800px !important;
+  margin: 0 auto !important;
+  padding: 0 1rem !important;
+  display: block !important;
+}
+
+// Центрування статті
+article {
+  max-width: 800px !important;
+  margin: 0 auto !important;
+  padding: 0 2rem !important;
+  background-color: #161618 !important;
+  color: #ebebec !important;
+}
+
+// Центрування футера
+footer {
+  max-width: 800px !important;
+  margin: 0 auto !important;
+  text-align: center !important;
+  background-color: #161618 !important;
+  color: #ebebec !important;
+}
+
+// Перевизначаємо всі можливі селектори для grid
+@media all and (min-width: 1200px) {
+  .page > #quartz-body {
+    grid-template-columns: 1fr !important;
+    grid-template-areas: "grid-center" !important;
+  }
+}
+
+@media all and (min-width: 800px) and (max-width: 1200px) {
+  .page > #quartz-body {
+    grid-template-columns: 1fr !important;
+    grid-template-areas: "grid-center" !important;
+  }
+}
+
+// Адаптивний дизайн
+@media (max-width: 768px) {
+  .page {
+    max-width: 100% !important;
+    padding: 0 1rem !important;
+  }
+  
+  article {
+    padding: 0 1rem !important;
+  }
+  
+  .center {
+    padding: 0 0.5rem !important;
+  }
+}
